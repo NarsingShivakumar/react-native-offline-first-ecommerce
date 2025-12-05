@@ -1,3 +1,118 @@
+# 🛍️ React Native Offline-First E-Commerce App
+
+<div align="center">
+
+[![React Native](https://img.shields.io/badge/React%20Native-0.73.2-blue.svg)](https://reactnative.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.3.3-blue.svg)](https://www.typescriptlang.org/)
+[![Redux Toolkit](https://img.shields.io/badge/Redux%20Toolkit-2.0.1-purple.svg)](https://redux-toolkit.js.org/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+
+**A production-grade React Native application demonstrating best practices, offline-first architecture, biometric authentication, and comprehensive mobile development patterns.**
+
+[Features](#-features) • [Installation](#-installation) • [Architecture](#-architecture) • [Documentation](#-documentation) • [Contributing](#-contributing)
+
+</div>
+
+---
+
+## 📱 About
+
+**ShopMaster Pro** is a full-featured e-commerce mobile application built with React Native, designed as a comprehensive learning resource and production-ready template. It showcases **70+ advanced React Native concepts** from fundamentals to expert-level implementations.
+
+### 🎯 Perfect For
+
+- **Learning React Native** - Complete implementation from basics to advanced
+- **Production Reference** - Real-world architecture and best practices
+- **Portfolio Projects** - Showcase your React Native expertise
+
+---
+
+## ✨ Features
+
+### 🔥 Core Features
+
+- **🌐 Offline-First Architecture** - Works seamlessly without internet connection
+- **🔐 Biometric Authentication** - Face ID, Touch ID, Fingerprint support
+- **🔗 Deep Linking** - Universal links and custom URL schemes
+- **🎨 Dynamic Theming** - Auto dark/light mode based on device settings
+- **🛒 Shopping Cart** - Persistent cart with offline support
+- **🔍 Real-time Search** - Debounced search with autocomplete
+- **♾️ Infinite Scroll** - Optimized pagination and lazy loading
+- **📱 Native Modules** - Custom Java/Kotlin & Objective-C/Swift modules
+- **🎭 Advanced Animations** - React Native Reanimated implementations
+- **📊 State Management** - Redux Toolkit with Redux Persist
+
+### 🛠️ Technical Features
+
+#### **Phase 1: Fundamentals**
+- ✅ Component Lifecycle (Hooks: useEffect, useLayoutEffect, useMemo, useCallback)
+- ✅ State Management (useState, useReducer, Context API, Redux Toolkit)
+- ✅ Props & Data Flow (TypeScript interfaces, prop drilling solutions)
+- ✅ Advanced Styling (Flexbox, responsive design, platform-specific styles)
+- ✅ React Navigation v6+ (Stack, Tab, Drawer, nested navigation)
+- ✅ Optimized Lists (FlatList with performance optimizations)
+- ✅ Form Management (Formik + Yup validation)
+
+#### **Phase 2: Advanced Concepts**
+- ✅ Native Module Development (Android: Java/Kotlin, iOS: Objective-C/Swift)
+- ✅ Platform-Specific Code (Conditional rendering, Platform.select)
+- ✅ Performance Optimization (React.memo, virtualization, bundle analysis)
+- ✅ Memory Management (Cleanup, leak prevention)
+- ✅ Thread Management (JS thread, main thread, shadow thread)
+
+#### **Phase 3: Production Features**
+- ✅ Offline Sync Strategy (Request queuing, conflict resolution)
+- ✅ Network State Management (NetInfo integration)
+- ✅ Error Boundaries & Error Handling
+- ✅ Caching Strategies (Image caching, API response caching)
+- ✅ Deep Linking Configuration (URL schemes, universal links)
+- ✅ Biometric Authentication (Native module implementation)
+- ✅ Auto-Switching Tabs (Scroll-based tab switching)
+
+#### **Phase 4: Architecture & Tools**
+- ✅ Clean Architecture Patterns
+- ✅ Type-Safe Navigation
+- ✅ API Client with Interceptors
+- ✅ Middleware (Offline queue, sync middleware)
+- ✅ Custom Hooks (Network status, biometric, theme, debounce)
+- ✅ Modular Project Structure
+
+---
+
+## 🏗️ Architecture
+
+┌─────────────────────────────────────────────────────┐
+│ Presentation Layer │
+│ (Screens, Components, Navigation, Theme) │
+└─────────────────┬───────────────────────────────────┘
+│
+┌─────────────────▼───────────────────────────────────┐
+│ Business Layer │
+│ (Redux Store, Slices, Middleware, Hooks) │
+└─────────────────┬───────────────────────────────────┘
+│
+┌─────────────────▼───────────────────────────────────┐
+│ Data Layer │
+│ (API Services, Storage, Database, Native Modules) │
+└─────────────────────────────────────────────────────┘
+
+### Tech Stack
+
+| Category | Technology |
+|----------|-----------|
+| **Framework** | React Native 0.73.2 |
+| **Language** | TypeScript 5.3.3 |
+| **State Management** | Redux Toolkit + Redux Persist |
+| **Navigation** | React Navigation v6 |
+| **Forms** | Formik + Yup |
+| **Animations** | React Native Reanimated 3 |
+| **API** | Axios with Interceptors |
+| **Storage** | AsyncStorage |
+| **Network** | NetInfo |
+| **UI Icons** | React Native Vector Icons |
+
+
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Getting Started
