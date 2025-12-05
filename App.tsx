@@ -1,45 +1,50 @@
+// App.tsx
+import React, { useEffect } from 'react';
+import { StatusBar } from 'react-native';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { store, persistor } from './src/store/store';
+import AppNavigator from './src/navigation/AppNavigator';
+import OfflineIndicator from './src/components/common/OfflineIndicator';
+import { useTheme } from './src/hooks/useTheme';
+
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
+ * Root App Component
+ * Interview: Explain app initialization flow
+ * Answer:
+ * 1. Redux Provider for global state
+ * 2. PersistGate for state rehydration
+ * 3. GestureHandlerRootView for gestures
+ * 4. AppNavigator for navigation
+ * 5. OfflineIndicator for network status
  */
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
-
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+const AppContent: React.FC = () => {
+  const theme = useTheme();
 
   return (
-    <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
-    </SafeAreaProvider>
-  );
-}
-
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
-
-  return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
+    <>
+      <StatusBar
+        barStyle={theme.isDark ? 'light-content' : 'dark-content'}
+        backgroundColor={theme.colors.background}
       />
-    </View>
+      <AppNavigator />
+      <OfflineIndicator />
+    </>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+const App: React.FC = () => {
+  return (
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <AppContent />
+        </GestureHandlerRootView>
+      </PersistGate>
+    </Provider>
+  );
+};
 
 export default App;
