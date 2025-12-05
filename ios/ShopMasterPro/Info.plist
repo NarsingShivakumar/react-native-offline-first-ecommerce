@@ -68,5 +68,26 @@
     <array>
         <string>applinks:shopmasterpro.com</string>
     </array>
+	<!-- Custom URL Scheme -->
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLName</key>
+            <string>com.shopmasterpro</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>shopmasterpro</string>
+            </array>
+        </dict>
+    </array>
+    
+    <!-- Universal Links -->
+    <key>com.apple.developer.associated-domains</key>
+    <array>
+        <string>applinks:shopmasterpro.com</string>
+        <string>applinks:www.shopmasterpro.com</string>
+    </array>
 </dict>
 </plist>

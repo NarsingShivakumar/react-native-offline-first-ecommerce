@@ -46,6 +46,41 @@
               <data android:scheme="https" />
               <data android:host="shopmasterpro.com" />
           </intent-filter>
+          <!-- Deep Link: Custom scheme (shopmasterpro://) -->
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="shopmasterpro" />
+        </intent-filter>
+
+        <!-- Deep Link: HTTPS URLs (https://shopmasterpro.com) -->
+        <intent-filter android:autoVerify="true">
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            
+            <data android:scheme="https" />
+            <data android:scheme="http" />
+            <data android:host="shopmasterpro.com" />
+            <data android:host="www.shopmasterpro.com" />
+        </intent-filter>
+
+        <!-- Deep Link: Product specific paths -->
+        <intent-filter android:autoVerify="true">
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            
+            <data 
+                android:scheme="https"
+                android:host="shopmasterpro.com"
+                android:pathPrefix="/product" />
+            <data 
+                android:scheme="https"
+                android:host="www.shopmasterpro.com"
+                android:pathPrefix="/product" />
+        </intent-filter>
       </activity>
     </application>
 </manifest>

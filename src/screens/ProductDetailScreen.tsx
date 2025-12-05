@@ -10,6 +10,7 @@ import {
   Dimensions,
   ActivityIndicator,
   Share,
+  Platform,
 } from 'react-native';
 import { RouteProp, useRoute, useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../types/navigation';
@@ -17,6 +18,7 @@ import { useTheme } from '../hooks/useTheme';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { fetchProductById } from '../store/slices/productsSlice';
 import { addToCart, updateQuantity, removeFromCart } from '../store/slices/cartSlice';
+import { DEEP_LINK_CONFIG } from '../utils/constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Animated, {
   useSharedValue,
@@ -45,7 +47,6 @@ const ProductDetailScreen: React.FC = () => {
   const product = useAppSelector(state => state.products.items.find(p => p.id === productId));
   const loading = useAppSelector(state => state.products.loading);
 
-  // Check if product is in cart
   const cartItem = useAppSelector(state => state.cart.items.find(item => item.id === productId));
   const quantity = cartItem?.quantity || 0;
 
@@ -96,12 +97,27 @@ const ProductDetailScreen: React.FC = () => {
     navigation.navigate('Main', { screen: 'Cart' });
   };
 
+  // UPDATED: Better share function with proper deep links
   const handleShare = async () => {
+    if (!product) return;
+
+    const webUrl = `https://${DEEP_LINK_CONFIG.HOST}/product/${productId}`;
+    const customSchemeUrl = `${DEEP_LINK_CONFIG.SCHEME}://product/${productId}`;
+
     try {
-      await Share.share({
-        message: `Check out ${product?.title} on ShopMaster Pro!\nshopmasterpro://product/${productId}`,
-        url: `https://shopmasterpro.com/product/${productId}`,
-      });
+      const shareContent = {
+        title: product.title,
+        message: Platform.OS === 'android' 
+          ? `Check out ${product.title} - $${product.price.toFixed(2)}\n\n${webUrl}`
+          : `Check out ${product.title} - $${product.price.toFixed(2)}`,
+        url: webUrl, // iOS uses this
+      };
+
+      const result = await Share.share(shareContent);
+
+      if (result.action === Share.sharedAction) {
+        console.log('Product shared successfully');
+      }
     } catch (error) {
       console.error('Share error:', error);
     }
@@ -200,16 +216,14 @@ const ProductDetailScreen: React.FC = () => {
         <View style={styles.bottomSpacing} />
       </Animated.ScrollView>
 
-      {/* Footer with Add to Cart or Quantity Controls + Go to Cart */}
+      {/* Footer */}
       <View style={[styles.footer, { backgroundColor: theme.colors.card }]}>
         {quantity === 0 ? (
-          // Add to Cart Button
           <Pressable style={[styles.addToCartButton, { backgroundColor: theme.colors.primary }]} onPress={handleAddToCart}>
             <Icon name="cart-outline" size={24} color="#FFFFFF" />
             <Text style={styles.addToCartText}>Add to Cart</Text>
           </Pressable>
         ) : (
-          // Quantity Controls + Go to Cart
           <View style={styles.cartActionsContainer}>
             <View style={[styles.quantityControl, { backgroundColor: theme.colors.surface }]}>
               <Pressable style={styles.controlButton} onPress={handleDecrement}>
